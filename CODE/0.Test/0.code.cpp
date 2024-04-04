@@ -1,41 +1,64 @@
-// 最大公约数：GCD (Greastest Common Divisor)
-// 最小公倍数：LCM (Lowest    Common Multiple)
+#include <iostream>
+#include <vector>
+#include <cmath>
 
-// 证明辗转相除法就是证明如下关系：
-// gcd(a, b) = gcd(b, a % b)
-// 假设a % b = r，即需要证明的关系为：gcd(a, b) = gcd(b, r)
-// 证明过程：
-// 因为a % b = r，所以如下两个等式必然成立
-// 1) a = b * q + r，q为0、1、2、3....中的一个整数
-// 2) r = a − b * q，q为0、1、2、3....中的一个整数
-// 假设u是a和b的公因子，则有: a = s * u, b = t * u
-// 把a和b带入2)得到，r = s * u - t * u * q = (s - t * q) * u
-// 这说明 : u如果是a和b的公因子，那么u也是r的因子
-// 假设v是b和r的公因子，则有: b = x * v, r = y * v
-// 把b和r带入1)得到，a = x * v * q + y * v = (x * q + y) * v
-// 这说明 : v如果是b和r的公因子，那么v也是a的公因子
-// 综上，a和b的每一个公因子 也是 b和r的一个公因子，反之亦然
-// 所以，a和b的全体公因子集合 = b和r的全体公因子集合
-// 即gcd(a, b) = gcd(b, r)
-// 证明结束
-
-#include<bits/stdc++.h>
 using namespace std;
 
-// 辗转相除法求最大公约数：
-int gcd(int a , int b) // 默认 a >= b
-{
-    return b==0 ? a : gcd(b , a%b);
+const int MAXN = 3000001;
+int tree[MAXN][2];
+int cnt;
+int high;
+
+void build(vector<int>& nums) {
+    cnt = 1;
+    int maxNum = INT_MIN;
+    for (int num : nums) {
+        maxNum = max(num, maxNum);
+    }
+    high = 31 - log2(maxNum);
+    for (int num : nums) {
+        int cur = 1;
+        for (int i = high, path; i >= 0; i--) {
+            path = (num >> i) & 1;
+            if (tree[cur][path] == 0) {
+                tree[cur][path] = ++cnt;
+            }
+            cur = tree[cur][path];
+        }
+    }
 }
 
-// 最小公倍数：
-int lcm(int a , int b) // 默认 a >= b
-{
-    return ( ( a / gcd(a , b) ) * b );
+int maxXor(int num) {
+    int ans = 0;
+    int cur = 1;
+    for (int i = high, status, want; i >= 0; i--) {
+        status = (num >> i) & 1;
+        want = status ^ 1;
+        if (tree[cur][want] == 0) {
+            want ^= 1;
+        }
+        ans |= (status ^ want) << i;
+        cur = tree[cur][want];
+    }
+    return ans;
 }
 
-int main()
-{
-    printf("%lld\n" , sqrt(LONG_LONG_MAX));
-    printf("%lld\n" , sqrt(INT_MAX));
+int findMaximumXOR(vector<int>& nums) {
+    build(nums);
+    int maxXorVal = 0;
+    for (int num : nums) {
+        maxXorVal = max(maxXorVal, maxXor(num));
+    }
+    return maxXorVal;
+}
+
+int main() {
+    int maxx=20;
+    int i=0;
+    while(maxx>1)
+    {
+        maxx >>= 1;
+        i++;
+    }
+    cout << i << endl;
 }
