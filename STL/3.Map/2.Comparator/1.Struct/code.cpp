@@ -41,5 +41,8 @@ int main()
         cout << pair.first << " " << pair.second << endl;
     }
     
+    cout << Map[1] << endl;
+    Map.erase(3);
+
     return 0;
 }

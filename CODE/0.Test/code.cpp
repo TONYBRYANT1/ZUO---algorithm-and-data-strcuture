@@ -4,13 +4,10 @@ using namespace std;
 
 int main()
 {
-    vector<int> arr = {1 , 4 , 1 , 5};
-    string ans;
-    ans.clear();
-    for(int i=1 ; i<=arr.size()-1 ; i++)
-    {
-        ans.append(to_string(arr[i]-arr[i-1]));
-        ans+='#';
-    }
-    cout << ans << endl;
+    int a , b;
+    scanf("%d" , &a);
+    printf("%d\n" , a);
+    scanf("%d" , &b);
+    printf("%d\n" , b);
+    return 0;
 }
