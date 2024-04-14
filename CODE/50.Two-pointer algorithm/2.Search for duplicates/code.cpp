@@ -52,3 +52,13 @@ public:
         }
     }
 };
+
+int main()
+{
+    vector<int> arr = {3 , 1 , 3 , 4 , 2};
+
+    Solution slt;
+    cout << slt.findDuplicate(arr);
+    
+    return 0;
+}

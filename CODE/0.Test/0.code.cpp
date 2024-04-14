@@ -2,38 +2,45 @@
 
 using namespace std;
 
-bool f(int energy , const vector<int>& pillars , int maxx)
+typedef struct TreeNode
 {
-    for(const auto& e : pillars)
+	int val;
+	struct TreeNode* left;
+	struct TreeNode* right;
+}TreeNode , *P;
+
+class Solution 
+{
+private:
+	bool same(P& r1 , P& r2)
+	{
+		if(r1==nullptr && r2==nullptr)
+		{
+			return true;
+		}
+		else if(r1!=nullptr && r2!=nullptr)
+		{
+			return r1->val == r2->val && same(r1.left , r2) && same(l1.right , r2);
+		}
+		else
+		{
+			return false;
+		}
+	}
+public:
+    bool isSubtree(TreeNode* r1, TreeNode* r2) 
     {
-        if(e<= energy)
-        {
-            energy += (energy - e);
-        }
-        else
-        {
-            energy -= (e - energy);
-        }
-
-        if(energy >= maxx)
-        {
-            return true;
-        }
-
-        if(energy < 0)
-        {
-            return false;
-        }
+        if(r1==nullptr && r2==nullptr)
+		{
+			return true;
+		}
+		else if(r1!=nullptr && r2!=nullptr)
+		{
+			return same(r1 , r2);
+		}
+		else
+		{
+			return false;
+		}
     }
-    return true;
-}
-
-int main()
-{
-    srand((unsigned int)time(NULL));
-    int a = rand();
-    int b = rand();
-    cout << a << endl;
-    cout << b << endl;
-    return 0;
-}
+};
