@@ -15,6 +15,9 @@ typedef struct TreeNode
 class Solution 
 {
 private:
+    // 确定了从树的哪个结点开始比较
+    // 遍历 比较树的每一个结点
+    // 时间复杂度：O(M) --- M为比较树的结点个数
     bool same(const P& t1 , const P& t2)
     {
         if((t1==nullptr) && (t2==nullptr))
@@ -32,6 +35,8 @@ private:
     }
 
 public:
+    // 遍历二叉树的每个结点，作为比较的开始
+    // 时间复杂度：O(N) --- N为二叉树的结点个数
     bool isSubtree(P root , P subRoot) 
     {
         // 四种情况：

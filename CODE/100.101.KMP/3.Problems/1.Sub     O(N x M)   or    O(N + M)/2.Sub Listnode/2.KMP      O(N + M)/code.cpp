@@ -14,6 +14,7 @@ private:
 
 private:
     // 获得 比较串s2 的 next数组
+    // 时间复杂度：O(M) --- M比较串s2的结点个数
     void get_next()
     {
         next.clear();
@@ -57,6 +58,9 @@ private:
     }
 
 private:
+    // 遍历二叉树的所有结点，并和 比较串 s2 比对
+    // 单结点的比对过程时间复杂度：O(1)
+    // 时间复杂度：O(N) N --- N为二叉树结点个数
     bool find(PT& root , int y)
     {
         // 一、结算情况：

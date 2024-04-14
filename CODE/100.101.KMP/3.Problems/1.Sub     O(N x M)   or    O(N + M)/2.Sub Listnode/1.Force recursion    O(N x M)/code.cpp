@@ -9,6 +9,8 @@ class Solution
 {
 private:
     // 已经确定从哪个根结点开始逐一比较，开始比较
+    // 比较 head链表的每个结点：
+    // 时间复杂度：O(M) --- M为链表的结点个数
     bool same(PL& head , PT& root)
     {
         // 恰好都为空，且一路上值都相等 ---> 说明树包含该结构的路径
@@ -34,6 +36,8 @@ private:
     }
 public:
     // 树中是否包含链表结构的数值
+    // 树or子树的每个根结点作为头开始比较
+    // 时间复杂度：O(N) --- N为二叉树的结点个数
     bool isSubPath(PL& head , PT& root) 
     {
         if((head==nullptr) && (root==nullptr))

@@ -16,6 +16,8 @@ private:
 
 private:
     // 二叉树的先序序列化：
+    // 得到具有唯一性的序列化字符串
+    // 时间复杂度：O(N) --- N为tree的结点个数
     void transform(const P& tree , vector<string>& s)
     {
         if(tree==nullptr)
@@ -32,6 +34,8 @@ private:
         return;
     }
 
+    // 获得 比较串s2 的 next数组
+    // 时间复杂度：O(M) --- M为s串的字符个数
     void get_next(const vector<string>& s)
     {
         next.clear();
@@ -75,6 +79,8 @@ private:
         return;
     }
 
+    // 遍历 s1 的每一个字符，与 s2 中的字符匹配，匹配时间复杂度：O(1)
+    // 时间复杂度：O(N) --- N为 s1的字符个数
     int find(const vector<string>& s1 , const vector<string>& s2)
     {
         int n = s1.size() , m = s2.size();
