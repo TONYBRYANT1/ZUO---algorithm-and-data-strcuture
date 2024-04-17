@@ -1,46 +1,42 @@
-#include<bits/stdc++.h>
-
-using namespace std;
-
-typedef struct TreeNode
+int BF(const string& s , const string& t)
 {
-	int val;
-	struct TreeNode* left;
-	struct TreeNode* right;
-}TreeNode , *P;
-
-class Solution 
-{
-private:
-	bool same(P& r1 , P& r2)
-	{
-		if(r1==nullptr && r2==nullptr)
-		{
-			return true;
-		}
-		else if(r1!=nullptr && r2!=nullptr)
-		{
-			return r1->val == r2->val && same(r1.left , r2) && same(l1.right , r2);
-		}
-		else
-		{
-			return false;
-		}
-	}
-public:
-    bool isSubtree(TreeNode* r1, TreeNode* r2) 
+  int i=0 , j=0 , n=0;
+  while(i < s.length())
+  {
+    if(s[i]!=t[i])
     {
-        if(r1==nullptr && r2==nullptr)
-		{
-			return true;
-		}
-		else if(r1!=nullptr && r2!=nullptr)
-		{
-			return same(r1 , r2);
-		}
-		else
-		{
-			return false;
-		}
+      j=0;
+      i++;
     }
-};
+    else if(j = t.length())
+    {
+      j=0;
+      n++;
+    }
+    else
+    {
+      j++;
+      i++;
+    }
+    return n;
+  }
+}
+
+string get(const struct node* s , const string& t)
+{
+  struct node* p = s->temp==1 ? s->sub : s->list;
+  while(p!=nullptr)
+  {
+    if((BF(s->data , t)) && (s->temp==0))
+    {
+      return t;
+      break;
+    }
+    else
+    {
+      p = p->temp == 1 ？ s->sub : s->list;
+    }
+  }
+
+  return nullptr;
+}
